@@ -18,10 +18,10 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid bg-dark text-light divHeader">
+    <div class="container-fluid navbar-dark bg-primary text-light divHeader">
         <div class="row">
             <div class="col-md-6-h1 col-sm-8 col-12">
-                <h1> <img src="" class="img-fluid" alt="" width=200> Sportski centar</h1>
+                <h1> <img src="#" class="img-fluid" alt="" width=200> Sportski centar</h1>
 
 
             </div>

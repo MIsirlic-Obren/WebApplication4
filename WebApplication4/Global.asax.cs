@@ -18,6 +18,8 @@ namespace WebApplication4
 
             //Session["korisnik"] = "";
             Session["tip_korisnika"] = "";
+            Session["ID"] = "";
+            Session["USERNAME"] = "";
         }
     }
 }

@@ -73,7 +73,7 @@
     <Content Include="Global.asax" />
     <Content Include="Home.html" />
     <Content Include="Kontakt i  lokacija.html" />
-    <Content Include="Login.html" />
+    <Content Include="Logout.aspx" />
     <Content Include="O nama.html" />
     <Content Include="Registracija.aspx" />
     <Content Include="Registracija.html" />
@@ -82,6 +82,7 @@
     <Content Include="Web.config" />
     <Content Include="login.aspx" />
     <Content Include="novo_logovanje.aspx" />
+    <Content Include="Zakazivanje.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.aspx.cs">
@@ -93,6 +94,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registracija.aspx.cs">
@@ -115,6 +123,13 @@
     </Compile>
     <Compile Include="novo_logovanje.aspx.designer.cs">
       <DependentUpon>novo_logovanje.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Zakazivanje.aspx.cs">
+      <DependentUpon>Zakazivanje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Zakazivanje.aspx.designer.cs">
+      <DependentUpon>Zakazivanje.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

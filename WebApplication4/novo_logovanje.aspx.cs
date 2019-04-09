@@ -13,24 +13,13 @@ namespace WebApplication4
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["tip_korisnika"].ToString() == "Admin")
+            if (Session["tip_korisnika"].ToString() != "")
             {
 
-
-                Response.Redirect("Admin.aspx");
+               
 
 
             }
-
-            else if (Session["tip_korisnika"].ToString() == "User")
-                {
-
-
-                    Response.Redirect("Home.html");
-
-
-                }
-
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -44,10 +33,10 @@ namespace WebApplication4
             string kori = TextBox1.Text;
             string pass = TextBox2.Text;
 
-            string CS = ("Data Source=LAPTOP-6RQ2FFD7\\SQLEXPRESS;Initial Catalog=KORISNICI;Integrated Security=True;MultipleActiveResultSets=True");
+            string CS = ("Data Source=LAPTOP-6RQ2FFD7\\SQLEXPRESS;Initial Catalog=FITNESS;Integrated Security=True;MultipleActiveResultSets=True");
             SqlConnection conn = new SqlConnection(CS);
 
-            SqlDataAdapter ADAPT = new SqlDataAdapter("SELECT PODACI.ID, USERNAME, LOZINKA, OVLASCENJA.NAZIV, EMAIL FROM PODACI INNER JOIN OVLASCENJA ON OVLASCENJA.ID = PODACI.OVLASCENJA WHERE USERNAME = " + "'" + kori + "'" + " OR EMAIL = " + "'" + kori + "'", conn);
+            SqlDataAdapter ADAPT = new SqlDataAdapter("SELECT ID, USERNAME, LOZINKA, mejl,ovlascenje FROM KORISNIK WHERE USERNAME = " + "'" + kori + "'" + " OR MEJL = " + "'" + kori + "'", conn);
             DataTable tabela = new DataTable();
             ADAPT.Fill(tabela);
 
@@ -66,24 +55,47 @@ namespace WebApplication4
                     Response.Write("korisnik postoji");
 
                     //provera za admina, usera
-                    Session["tip_korisnika"] = tabela.Rows[0][3].ToString();
+                    Session["tip_korisnika"] = tabela.Rows[0][4].ToString();
+                    Session["ID"] = tabela.Rows[0][0].ToString();
+                    Session["USERNAME"] = tabela.Rows[0][1].ToString();
 
-                    if (tabela.Rows[0][3].ToString() == "Admin")
+
+
+                    //Response.Redirect("index.html");
+
+                    string value = Request.QueryString["value"];
+
+                    if (value == "zakazivanje")
                     {
-                        //Session["korisnik"] = kori;
-                        
-                        Response.Redirect("Admin.aspx"); //ako se admin ulogovao posalji ga na admin stranu
-                        
+
+                        Response.Redirect("Zakazivanje.aspx");
+
 
                     }
-
 
                     else
                     {
-                        //Session["korisnik"] = kori;
-                        Response.Redirect("Home.html"); // ako se user ulogovao posalji ga na user stranu
-                        
+
+                        Response.Redirect("index.html"); // VRACANJE NA POCETNU STRANU!!!!!!
+
                     }
+
+                    //if (tabela.Rows[0][3].ToString() == "Admin")
+                    //{
+                    //    //Session["korisnik"] = kori;
+
+                    //    Response.Redirect("Admin.aspx"); //ako se admin ulogovao posalji ga na admin stranu
+
+
+                    //}
+
+
+                    //else
+                    //{
+                    //    //Session["korisnik"] = kori;
+                    //    Response.Redirect("Home.html"); // ako se user ulogovao posalji ga na user stranu
+
+                    //}
 
 
                 }

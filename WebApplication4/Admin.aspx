@@ -35,7 +35,7 @@
 
     <div class="row bg-dark">
         <div class="col-md-12">
-            <nav class="navbar navbar-expand-lg navbar-dark text-light">
+            <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #e3f2fd">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,7 @@
                     <ul class="navbar-nav mr-auto">
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-dark " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 NASA PONUDA
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

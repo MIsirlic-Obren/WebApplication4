@@ -20,9 +20,9 @@ namespace WebApplication4
             string email = Request.Form["email"];
 
 
-            string CS = ("Data Source=LAPTOP-6RQ2FFD7\\SQLEXPRESS;Initial Catalog=korisnici;Integrated Security=True;MultipleActiveResultSets=True");
+            string CS = ("Data Source=LAPTOP-6RQ2FFD7\\SQLEXPRESS;Initial Catalog=FITNESS;Integrated Security=True;MultipleActiveResultSets=True");
             SqlConnection conn = new SqlConnection(CS);
-            SqlDataAdapter adapt = new SqlDataAdapter("SELECT USERNAME, EMAIL FROM PODACI WHERE username = " + "'" + korisnik + "'" + " OR email = " + "'" + email + "'", conn);
+            SqlDataAdapter adapt = new SqlDataAdapter("SELECT * FROM KORISNIK WHERE username = " + "'" + korisnik + "'" + " OR mejl = " + "'" + email + "'", conn);
 
 
             DataTable tabela = new DataTable();
@@ -32,12 +32,23 @@ namespace WebApplication4
             if (tabela.Rows.Count == 0)
             {
 
-                SqlCommand komanda = new SqlCommand("INSERT INTO PODACI(username,lozinka,ovlascenja,email) VALUES(" + "'" + korisnik + "','" + lozinka + "', 2, " + "'" + email + "'" + ")", conn);
+                SqlCommand komanda = new SqlCommand("INSERT INTO KORISNIK(username,lozinka,ovlascenje,mejl,ime,prezime) VALUES(" + "'" + korisnik + "','" + lozinka + "', 2, " + "'" + email + "', '" + ime + "', " + "'" + prezime + "'" +  ")", conn);
                 conn.Open();
                 komanda.ExecuteNonQuery();
                 conn.Close();
-                Response.Write("unos uspesan");
-                Session["korisnik"] = korisnik;
+
+                //Response.Write("unos uspesan");
+
+                SqlDataAdapter adapt1 = new SqlDataAdapter("SELECT * FROM KORISNIK WHERE username = " + "'" + korisnik + "'" + " OR mejl = " + "'" + email + "'", conn);
+                DataTable tabela2 = new DataTable();
+                adapt1.Fill(tabela2);
+
+                Session["tip_korisnika"] = tabela2.Rows[0][6].ToString();
+                Session["ID"] = tabela2.Rows[0][0].ToString();
+                Session["USERNAME"] = tabela2.Rows[0][1].ToString();
+
+                Response.Redirect("Home.html");
+
 
 
             }
