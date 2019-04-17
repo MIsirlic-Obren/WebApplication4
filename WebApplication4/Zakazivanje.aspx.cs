@@ -6,11 +6,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Services;
 
 namespace WebApplication4
 {
     public partial class Zakazivanje : System.Web.UI.Page
     {
+
+        public static DropDownList C1;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["ID"].ToString() == "")
@@ -28,9 +32,12 @@ namespace WebApplication4
                 if (!IsPostBack) // ako nije prvo(pocetno) loadovanje stranice onda izvrsavaj kod koji se nalazi u ovom if bloku!!!!!!!!
                 {
 
+                    C1 = DropDownList1;
+
                     DateTime novi = new DateTime();
                     novi = DateTime.Now;
                     Dictionary<string, string> datumi = new Dictionary<string, string>();
+                    
                     
 
 
@@ -50,7 +57,7 @@ namespace WebApplication4
                     DropDownList1.DataValueField = "VALUE";
                     DropDownList1.DataBind();
 
-                    DropDownList1.Items.Insert(0, new ListItem("", ""));
+                    DropDownList1.Items.Insert(0, new ListItem("", "")); //rucno insertovanje itema u dropdown
 
 
                     string CS = ("Data Source=LAPTOP-6RQ2FFD7\\SQLEXPRESS;Initial Catalog=FITNESS;Integrated Security=True;MultipleActiveResultSets=True");
@@ -59,6 +66,9 @@ namespace WebApplication4
                     SqlDataAdapter adapt = new SqlDataAdapter("SELECT * FROM LOKACIJA", conn);
                     DataTable lokacije = new DataTable();
                     adapt.Fill(lokacije);
+
+
+              
 
                     DropDownList2.DataSource = lokacije;
                     DropDownList2.DataTextField = "Naziv";
@@ -92,7 +102,7 @@ namespace WebApplication4
                 moj.InnerHtml = Session["USERNAME"].ToString() + " je uspesno zakazao termin";
 
                 Metoda();
-
+                osveziTabelu();
 
             }
 
@@ -109,7 +119,7 @@ namespace WebApplication4
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            Metoda();
+            Metoda(); //izabacuje slobodne termine
 
         }
 
@@ -122,18 +132,18 @@ namespace WebApplication4
 
                 DropDownList3.Items.Clear(); // ocisti sve iz liste sa terminima ako slucajno ima nesto
 
-                string datum = DropDownList1.SelectedValue;
-                string lokacija = DropDownList2.SelectedValue;
+                string datum = DropDownList1.SelectedValue; // datumi
+                string lokacija = DropDownList2.SelectedValue; //sport
 
                 string CS = ("Data Source=LAPTOP-6RQ2FFD7\\SQLEXPRESS;Initial Catalog=FITNESS;Integrated Security=True;MultipleActiveResultSets=True");
                 SqlConnection conn = new SqlConnection(CS);
 
                 SqlDataAdapter adapt = new SqlDataAdapter("SELECT DATUM,VREME,LOKACIJA FROM PODACI WHERE DATUM = '" + datum + "'" + " AND LOKACIJA = " + lokacija, conn); // daj mi zakazane termin za izabrani dan i izabrani sport!
                 DataTable termini = new DataTable();
-                adapt.Fill(termini);
+                adapt.Fill(termini);  //tabela zauzetih termina!!!
                 //   
 
-                if (termini.Rows.Count == 0)
+                if (termini.Rows.Count == 0)// svi termini za izabrani datum su slobodni!!!
                 {
                     TimeSpan vreme = new TimeSpan(9, 0, 0);
                     Dictionary<string, string> satnica = new Dictionary<string, string>();
@@ -154,6 +164,8 @@ namespace WebApplication4
                     DropDownList3.DataTextField = "KEY";
                     DropDownList3.DataValueField = "VALUE";
                     DropDownList3.DataBind();
+
+                  //  osveziTabelu();
 
 
                 }
@@ -177,7 +189,7 @@ namespace WebApplication4
                             if ((TimeSpan)termini.Rows[k][1] == vreme)
                             {
 
-                                provera = false;
+                                provera = false; // kada nadje vrednost u tabeli zauzetih termins
                                 break;
 
 
@@ -187,13 +199,13 @@ namespace WebApplication4
                             {
 
 
-                                provera = true;
+                                provera = true; // kada je termin slobodan
                             }
 
                         }
+                        //  9:00
 
-
-                        if (provera)
+                        if (provera == true)
                         {
 
                             string val = vreme.Hours + ":" + vreme.Minutes;
@@ -201,8 +213,6 @@ namespace WebApplication4
                             satnica.Add(text, val);
                             //TimeSpan razlika = new TimeSpan(1, 0, 0);
                             //vreme = vreme.Add(razlika);
-
-
 
                         }
 
@@ -212,10 +222,13 @@ namespace WebApplication4
 
                     }
 
+                  //filtriranje termina i popunjavanje dropdown-a sa slobodnim terminima
                     DropDownList3.DataSource = satnica;
                     DropDownList3.DataTextField = "KEY";
                     DropDownList3.DataValueField = "VALUE";
                     DropDownList3.DataBind();
+
+                //    osveziTabelu();
 
 
                 }
@@ -229,17 +242,133 @@ namespace WebApplication4
 
             }
 
-
-
-
-
-
-
         }
 
         protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
         {
             DropDownList1.SelectedIndex = 0;
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+
+            // svi termini za id trenutno ulogovanog!
+
+            //termini.InnerHtml = "";
+
+            //DateTime danasnji = DateTime.Now;
+            //string sqlDatum = danasnji.Year.ToString() + danasnji.Month.ToString().PadLeft(2, '0') + danasnji.Day.ToString().PadLeft(2, '0');
+
+
+            //string CS = ("Data Source=LAPTOP-6RQ2FFD7\\SQLEXPRESS;Initial Catalog=FITNESS;Integrated Security=True;MultipleActiveResultSets=True");
+            //SqlConnection conn = new SqlConnection(CS);
+
+            //SqlDataAdapter adapter = new SqlDataAdapter("SELECT PODACI.ID,Datum, Vreme,Lokacija.NAZIV,Korisnik,Lokacija.Cena FROM PODACI INNER JOIN LOKACIJA ON LOKACIJA.ID = PODACI.LOKACIJA WHERE Korisnik = " + Session["ID"].ToString() + " AND Datum >= '" + sqlDatum + "'", conn);
+            //DataTable lista = new DataTable();
+            //adapter.Fill(lista);
+
+            ////DataTableReader citac = lista.CreateDataReader();
+            ////while (citac.HasRows)
+            ////{
+
+            ////    termini.InnerHtml += "<div>" + citac[1].ToString() + "   " + citac[2].ToString() + "    " + citac[3].ToString();
+
+
+
+            ////}
+            //int suma = 0;
+
+            //for(int i = 0; i < lista.Rows.Count; i++)
+            //{
+            //    suma += (int)lista.Rows[i][5];
+
+            //    DateTime trenutni = Convert.ToDateTime(lista.Rows[i][1]);
+            //    string datum = trenutni.Day.ToString().PadLeft(2, '0') + "." + trenutni.Month.ToString().PadLeft(2, '0') + "." + trenutni.Year.ToString();
+            //    // termini.InnerHtml += "<div>" + lista.Rows[i][1].ToString() + "   " + lista.Rows[i][2].ToString() + "    " + lista.Rows[i][3].ToString();
+            //    termini.InnerHtml += "<div>" + datum + "   " + lista.Rows[i][2].ToString() + "    " + lista.Rows[i][3].ToString() + "  Cena je  " + lista.Rows[i][5].ToString() + "<button id= '" + lista.Rows[i][0].ToString() + "'" + " class='dugme'" + " onclick='" + "poziv(this)" + "'" + ">Obrisi</button></div>";
+            //   // termini.InnerHtml += "<div class>" + datum + "   " + lista.Rows[i][2].ToString() + "    " + lista.Rows[i][3].ToString() + "  Cena je  " + lista.Rows[i][5].ToString() + "<button id= '" + lista.Rows[i][0].ToString() + "'" + " class='dugme'" + " onclick='" + "poziv(this)" + "'" + ">Obrisi</button></div>";
+
+
+            //}
+
+            //termini.InnerHtml += "<div>Vasa ukupna suma je " + suma + "</div>";
+
+
+            //  termini.InnerHtml += "<div>" + citac[1].ToString() + "   " + citac[2].ToString() + "    " + citac[3].ToString();
+            osveziTabelu();
+            Metoda();
+
+        }
+
+        public void osveziTabelu()
+        {
+
+            termini.InnerHtml = "";
+
+            DateTime danasnji = DateTime.Now;
+            string sqlDatum = danasnji.Year.ToString() + danasnji.Month.ToString().PadLeft(2, '0') + danasnji.Day.ToString().PadLeft(2, '0');
+
+
+            string CS = ("Data Source=LAPTOP-6RQ2FFD7\\SQLEXPRESS;Initial Catalog=FITNESS;Integrated Security=True;MultipleActiveResultSets=True");
+            SqlConnection conn = new SqlConnection(CS);
+
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT PODACI.ID,Datum, Vreme,Lokacija.NAZIV,Korisnik, Lokacija.Cena FROM PODACI INNER JOIN LOKACIJA ON LOKACIJA.ID = PODACI.LOKACIJA WHERE Korisnik = " + Session["ID"].ToString() + " AND Datum >= '" + sqlDatum + "'", conn);
+            DataTable lista = new DataTable();
+            adapter.Fill(lista);
+
+            //DataTableReader citac = lista.CreateDataReader();
+            //while (citac.HasRows)
+            //{
+
+            //    termini.InnerHtml += "<div>" + citac[1].ToString() + "   " + citac[2].ToString() + "    " + citac[3].ToString();
+
+
+
+            //}
+
+            int suma = 0;
+
+            for (int i = 0; i < lista.Rows.Count; i++)
+            {
+
+                //if (i == 0)
+                //{
+
+                //    termini.InnerHtml += "<div>
+
+                suma += (int)lista.Rows[i][5];
+                //}
+
+                DateTime trenutni = Convert.ToDateTime(lista.Rows[i][1]);
+                string datum = trenutni.Day.ToString().PadLeft(2, '0') + "." + trenutni.Month.ToString().PadLeft(2, '0') + "." + trenutni.Year.ToString();
+                // termini.InnerHtml += "<div>" + lista.Rows[i][1].ToString() + "   " + lista.Rows[i][2].ToString() + "    " + lista.Rows[i][3].ToString() + "<button id= '" + lista.Rows[i][0].ToString() + "'" + " onclick='" + "poziv(this)" + "'" + ">Obrisi</button></div>";
+                // termini.InnerHtml += "<div>" + datum + "   " + lista.Rows[i][2].ToString() + "    " + lista.Rows[i][3].ToString() + "<button id= '" + lista.Rows[i][0].ToString() + "'" + " class='dugme'" + " onclick='" + "poziv(this)" + "'" + ">Obrisi</button></div>";
+                termini.InnerHtml += "<div class='stavka'>" + "<div class='detalj'>" + datum + "</div>" + "<div class='detalj'>" + lista.Rows[i][2].ToString() + "</div>" + "<div class='detalj'>" + lista.Rows[i][3].ToString() + "</div>" + "<div class='detalj'>" + "Cena je " + lista.Rows[i][5].ToString() + " dinara" + "</div>" + "<div class='detalj'>" + "<button id= '" + lista.Rows[i][0].ToString() + "'" + " class='dugme'" + " onclick='" + "poziv(this)" + "'" + ">Obrisi</button>" + "</div>" + "</div>";
+
+            }
+
+            termini.InnerHtml += "<div>Vasa ukupna suma je " + suma + "</div>";
+
+
+            //  termini.InnerHtml += "<div>" + citac[1].ToString() + "   " + citac[2].ToString() + "    " + citac[3].ToString();
+
+        }
+
+        [WebMethod]
+        public static void ObrisiTermin(string id)
+        {
+
+            //string provera = id;
+            //string provera1 = id;
+
+
+            string CS = ("Data Source=LAPTOP-6RQ2FFD7\\SQLEXPRESS;Initial Catalog=FITNESS;Integrated Security=True;MultipleActiveResultSets=True");
+            SqlConnection conn = new SqlConnection(CS);
+            SqlCommand brisi = new SqlCommand("DELETE FROM PODACI WHERE ID = " + id, conn);
+            conn.Open();
+            brisi.ExecuteNonQuery();
+            conn.Close();
+
         }
     }
 }

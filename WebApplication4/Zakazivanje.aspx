@@ -10,8 +10,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <title>Sportski Centar </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+        <style>
+
+        .dugme{
+
+            background-color:red;
+            color:blue;
+
+
+        }
+        #termini{
+
+            width:100%;
+            display:flex;
+            margin:auto;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+
+        }
+
+        .stavka{
+
+           width:60%;
+           display:flex;
+           justify-content:center;
+           align-items:center;
+
+
+        }
+
+        .detalj{
+
+            width:25%;
+            display:flex;
+           justify-content:center;
+           align-items:center;
+        }
+
+
+        /*.Prostor
+        {
+
+            width:100%;
+            height:500px;
+                     
+        }*/
+
+    </style>
+
+
 
 </head>
+
+
+
 <body>
         <div class="container-fluid navbar-dark bg-primary text-light divHeader">
         <div class="row">
@@ -35,12 +91,12 @@
                                                 <li class="nav-item active">
                             <a class="nav-link text-dark" href="Home.html">HOME</a>
                         </li>
-                        <li class="nav-item active">
+                       <%-- <li class="nav-item active">
                             <a class="nav-link text-dark" href="O nama.html">O NAMA</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="Kontakt i  lokacija.html">KONTAKT I LOKACIJA</a>
-                        </li>
+                        </li>--%>
                       <%--  <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 NASA PONUDA
@@ -88,23 +144,64 @@
 
            
             <asp:Button ID="Button1" runat="server" Text="ZAKAZI TERMIN!" OnClick="Button1_Click" />
+
+             <asp:Button ID="Button2" runat="server" Text="PRIKAZI ZAKAZANE TERMINE" OnClick="Button2_Click" />
+
+
              </div>
 
 
 
-              <script>
+        </div>
+    </form>
 
-            //document.getElementById("DropDownList2").addEventListener("change", function () {
+    
+<%--    <div class="Prostor"></div>--%>
+     <div id="termini" runat="server">
 
-            //    document.getElementById("DropDownList1").value = "";
+
+      </div>
 
 
-            //})
+          <script>
+
+              function poziv(element) {
+
+                 
+
+                  var id = element.getAttribute("id");
+                  $.ajax({
+                      url: "Zakazivanje.aspx/ObrisiTermin",
+                      method: "POST",
+                      contentType: "application/json; charset=utf-8",
+                      data: JSON.stringify({ id: id }),
+                      success: function (result) {
+
+                          alert("radi");
+
+                          document.getElementById("Button2").click();
+                          document.getElementById("DropDownList1").selectedIndex = 0;
+
+
+                      },
+                      error: function () {
+
+                          alert("ne radi");
+
+
+                      }
+
+                  })
+
+
+              }
+
+
+
 
 
         </script>
 
-        </div>
-    </form>
+
 </body>
 </html>

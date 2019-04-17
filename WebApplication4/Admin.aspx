@@ -41,7 +41,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<%--                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
 
                         <li class="nav-item dropdown">
@@ -63,87 +63,54 @@
                             <a class="nav-link" href="Kontakt i  lokacija.html">KONTAKT I LOKACIJA</a>
                         </li>
                     </ul>
-                </div>
+                </div>--%>
 
             </nav>
         </div>
     </div>
  
 
-    <div class="container">
+    <div class="container-fluid bg-grey text-center">
         <div class="row">
 
-            <div class="col-12 text-left text-dark  ">
-                <div> <h1>DOBRODOSLI</h1> </div>
-                <div class="jumbotron p-3 mb-2 bg-light text-dark">
-                    <p>
-                        Dobrodosli na nasu stranicu gde cemo vas upoznati sa nasim radom,
-                        rezultatima i uspesima. Hvala sto ste posetili nas sajt, nadamo se da smo zadobili vase poverenje
-                        i da cete uzivati u nasem radu.
-                    </p>
+            <div class="col-md-12  navbar navbar-expand-lg navbar navbar-light " style="background-color: #e3f2fd  ">
+                <div> <h1>WELCOME TO ADMIN PAGE</h1> </div>
 
-                </div>
+             <span class="navbar-text">
+               <a href="Logout.aspx" class="text-dark btn btn-primary"><span class="glyphicon glyphicon-user"> </span> Log out</a>
+             </span>
+
             </div>
+
         </div>
     </div>
 
+    <form id="form1" runat="server">
 
-        <div class="container-fluid bg-grey">
-            <div class="row">
-                <div class="col-sm-4">
-                    <span class="glyphicon glyphicon-globe logo"></span>
-                </div>
-                <div class="col-sm-4">
-                    <h2>STA MOZETE DA OCEKUJETE OD NAS</h2>
-                    <br>
-                    <h4><strong>NASA MISIJA:</strong> Je vase zdravlje </h4>
-                    <h4><strong>NASA VIZIJA:</strong> Zdraviji svet</h4>
-                </div>
-            </div>
-        </div>
-        <br>
-        <br>
 
-        <div class="container-fluid text-center">
-            <h2>USLUGE</h2>
-            <h4>Sta mi nudimo</h4>
-            <br>
-            <div class="row">
-                <div class="col-sm-4">
-                    <span class="glyphicon glyphicon-off"></span>
-                    <h4>SNAGU</h4>
-                    <p>Lorem ipsum dolor sit amet..</p>
-                </div>
-                <div class="col-sm-4">
-                    <span class="glyphicon glyphicon-heart"></span>
-                    <h4>POSVECENOST</h4>
-                    <p>Lorem ipsum dolor sit amet..</p>
-                </div>
-                <div class="col-sm-4">
-                    <span class="glyphicon glyphicon-lock"></span>
-                    <h4>ZAVRSEN POSAO</h4>
-                    <p>Lorem ipsum dolor sit amet..</p>
-                </div>
-            </div>
-            <br><br>
-            <div class="row">
-                <div class="col-sm-4">
-                    <span class="glyphicon glyphicon-leaf"></span>
-                    <h4>ZDRAVLJE</h4>
-                    <p>Lorem ipsum dolor sit amet..</p>
-                </div>
-                <div class="col-sm-4">
-                    <span class= "glyphicon glyphicon-certificate"></span>
-                    <h4>OBUCENE TRENERE</h4>
-                    <p>Lorem ipsum dolor sit amet..</p>
-                </div>
-                <div class="col-sm-4">
-                    <span class="glyphicon glyphicon-wrench"></span>
-                    <h4>NAPORAN RAD I MNOGO ZNOJA</h4>
-                    <p>Lorem ipsum dolor sit amet..</p>
-                </div>
-            </div>
-        </div>
+        <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+        
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+
+                <div id="cena" runat="server"></div>
+
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="DropDownList1" EventName="SelectedIndexChanged" />
+            </Triggers>
+        </asp:UpdatePanel>
+
+        
+
+
+    </form>
+
+   
+
 
 
         <footer class="container-fluid text-center fixed-bottom bg-dark text-light">

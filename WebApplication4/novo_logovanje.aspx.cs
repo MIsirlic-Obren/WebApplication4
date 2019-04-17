@@ -67,16 +67,41 @@ namespace WebApplication4
 
                     if (value == "zakazivanje")
                     {
+                        if (Session["tip_korisnika"].ToString() == "1")
+                        {
+                          
+                            Response.Redirect("Admin.aspx"); // VRACANJE NA POCETNU STRANU!!!!!!
 
-                        Response.Redirect("Zakazivanje.aspx");
+                        }
 
+                        else
+                        {
+
+                            Response.Redirect("Zakazivanje.aspx");
+
+                        }
 
                     }
 
+                   
+
                     else
                     {
+                        if (Session["tip_korisnika"].ToString() == "1")
+                        {
 
-                        Response.Redirect("index.html"); // VRACANJE NA POCETNU STRANU!!!!!!
+                            Response.Redirect("Admin.aspx"); // VRACANJE NA POCETNU STRANU!!!!!!
+
+                        }
+
+                        else
+                        {
+
+                            Response.Redirect("Home.html");
+
+
+                        }
+                         // VRACANJE NA POCETNU STRANU!!!!!!
 
                     }
 
