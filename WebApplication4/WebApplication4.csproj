@@ -72,6 +72,7 @@
     <Content Include="Bazen.html" />
     <Content Include="Global.asax" />
     <Content Include="Home.html" />
+    <Content Include="index.html" />
     <Content Include="Kontakt i  lokacija.html" />
     <Content Include="Logout.aspx" />
     <Content Include="O nama.html" />

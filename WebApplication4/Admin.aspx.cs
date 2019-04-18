@@ -70,7 +70,7 @@ namespace WebApplication4
                 Dictionary<string, string> novi = (Dictionary<string, string>)Session["recnik"];
 
                 string cena1 = novi[DropDownList1.SelectedValue];
-                cena.InnerHtml = cena1;
+                cena.InnerHtml = "Trenutna cena je " + cena1;
 
 
 
@@ -80,5 +80,30 @@ namespace WebApplication4
 
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            napomena.InnerHtml = "";
+            string CS = ("Data Source=LAPTOP-6RQ2FFD7\\SQLEXPRESS;Initial Catalog=FITNESS;Integrated Security=True;MultipleActiveResultSets=True");
+
+            string sport = DropDownList1.SelectedValue;
+            string novacena = novaCena.Value;
+            if (novacena != "" && sport != "")
+            {
+                SqlConnection conn = new SqlConnection(CS);
+                SqlCommand komanda = new SqlCommand("UPDATE LOKACIJA SET Cena= " + novacena + " WHERE id =" + sport, conn);
+                conn.Open();
+                komanda.ExecuteNonQuery();
+                conn.Close();
+
+                cena.InnerHtml = "Uspesno ste izmenili cenu. Nova cena je: " + novacena;
+            }
+            else
+            {
+                napomena.InnerHtml = "morati odabrati kategoriju i uneti vrednost";
+            }
+           
+        }
+
     }
 }

@@ -17,6 +17,10 @@
         /*.dropdown-menu {
             display: "none" display:"block";
         }*/
+
+        .nevidljiv{
+            display:none;
+        }
     </style>
 
     <title>Sportski Centar </title>
@@ -70,20 +74,27 @@
     </div>
  
 
-    <div class="container-fluid bg-grey text-center">
+    <div class="container-fluid bg-grey text-center ">
         <div class="row">
 
             <div class="col-md-12  navbar navbar-expand-lg navbar navbar-light " style="background-color: #e3f2fd  ">
-                <div> <h1>WELCOME TO ADMIN PAGE</h1> </div>
+                <div class= "col-md-10 text-left"> <h1>WELCOME TO ADMIN PAGE</h1> </div>
 
-             <span class="navbar-text">
-               <a href="Logout.aspx" class="text-dark btn btn-primary"><span class="glyphicon glyphicon-user"> </span> Log out</a>
-             </span>
+             <div class="col-md-2">
+               <span class="navbar-text">
+                 <a href="Logout.aspx" class="text-light btn btn-primary"><span class="glyphicon glyphicon-user"> </span> Log out</a
+                </span>
+            </div>
 
             </div>
 
         </div>
     </div>
+
+    <div class="container">
+        <div class="row">
+
+        
 
     <form id="form1" runat="server">
 
@@ -91,31 +102,87 @@
         <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
         
 
+             <span class="navbar-text">
+                            <input type="button" value="Prikaži panel za izmenu" onclick="return false" id="dugme" /></span><div class="col-sm-offset-2 col-sm-10">
+                            &nbsp;</div>
+
+
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
-                <div id="cena" runat="server"></div>
+          <div id="cena" runat="server"></div>
 
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="DropDownList1" EventName="SelectedIndexChanged" />
+                <asp:AsyncPostBackTrigger ControlID="Button1" EventName="Click" />
             </Triggers>
         </asp:UpdatePanel>
 
-        
+
+
+        <div class="nevidljiv" id="sakriven"> 
+            <asp:Label ID="Label1" runat="server" Text="Label"> Unesi novu cenu</asp:Label>
+
+          <input type="number" id="novaCena"  runat="server"/>
+
+          <asp:Button ID="Button1" runat="server" Text="OK" OnClick="Button1_Click" />
+
+        </div>
+
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+            <ContentTemplate>
+
+                  <div id="napomena" runat="server">
+        </div>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="Button1" EventName="Click" />
+            </Triggers>
+        </asp:UpdatePanel>
+
+
+      
 
 
     </form>
+
+            </div>
+        </div>
 
    
 
 
 
         <footer class="container-fluid text-center fixed-bottom bg-dark text-light">
-            <p>  www.steroid@gmail.com</p>
+            <p>  www.steroid@gmail.comm</p>
         </footer>
+
+    <script>    
+        document.getElementById("dugme").addEventListener("click", function () {
+
+            //alert("radi");
+
+            if (document.getElementById("sakriven").classList.contains("nevidljiv")) {
+
+                document.getElementById("sakriven").classList.remove("nevidljiv");
+                this.value = "zatvori panel za izmenu";
+
+            }
+            else
+            {
+
+                document.getElementById("sakriven").classList.add("nevidljiv");
+                this.value = "otvori panel za izmenu";
+            }
+
+
+
+        })
+
+    </script>
 
 </body>
 </html>
