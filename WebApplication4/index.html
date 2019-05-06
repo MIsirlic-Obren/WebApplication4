@@ -12,9 +12,79 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
     <style>
+
+        /*body{
+
+            margin:0px;
+            padding:0px;
+
+
+        }
+
+        *{
+
+            margin:0px;
+            padding:0px;
+
+        }*/
+
         /*.dropdown-menu {
             display: "none" display:"block";
         }*/
+
+        .proba{
+
+            display:flex;
+            justify-content:flex-start;
+            align-items:center;
+
+        }
+
+        @media only screen and (max-width:800px){
+
+
+            .proba{
+
+                flex-direction:column;
+
+
+            }
+
+
+            /*.proba h1{
+
+                font-size:7vw;
+
+            }
+
+            h1 {
+                font-size: 8vw;
+            }
+
+            h2 {
+
+                font-size: 6.5vw;
+            }*/
+        }
+
+
+        /*.probaj{
+
+            z-index:1000000;
+            position:absolute;
+        }*/
+
+
+        .futer{
+
+            /*position:absolute;*/
+            bottom:0px;
+            left:0px;
+            right:0px;
+            height:100px;
+
+
+        }
     </style>
 
     <title>Sportski Centar </title>
@@ -25,8 +95,9 @@
 <body>
     <div class="container-fluid navbar-dark bg-primary text-light divHeader">
         <div class="row">
-            <div class="col-md-6-h1 col-sm-8 col-12">
-                <h1> <img src="YE6LLW3.jpg" class="img-fluid" alt="" width='200'> CENTAR SPORTA</h1>
+            <div class="col-md-6-h1 col-sm-8 col-12 proba">
+                <img src="YE6LLW3.jpg.jpg" class="img-fluid" alt="" width='200' />
+                <h1 style="margin-left:5px;">CENTAR SPORTA</h1>
             </div>
         </div>
     </div>
@@ -55,7 +126,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                                 <a class="dropdown-item" href="Baloni_za_fudbal.html">BALONI ZA FUDBAL</a>
-                                <a class="dropdown-item" href="Teretane.html">TERETANE</a>
+                                <!--<a class="dropdown-item" href="Teretane.html">TERETANE</a>-->
                                 <a class="dropdown-item" href="Bazen.html">BAZENI</a>
                                 <a class="dropdown-item" href="TereniZaKosarku.html">TERENI ZA KOSARKU</a>
                             </div>
@@ -71,44 +142,9 @@
                 </div>
             </nav>
 
-            
-
-            <!--<nav class="navbar navbar-expand-lg navbar-dark text-light">
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
 
 
-                <li class="nav-item active">
-                    <a class="nav-link" href="O nama.html">O NAMA</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="Kontakt i  lokacija.html">KONTAKT I LOKACIJA</a>
-                </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-light " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        NASA PONUDA
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                        <a class="dropdown-item" href="Baloni_za_fudbal.html">BALONI ZA FUDBAL</a>
-                        <a class="dropdown-item" href="Teretane.html">TERETANE</a>
-                        <a class="dropdown-item" href="Bazen.html">BAZENI</a>
-                        <a class="dropdown-item" href="TereniZaKosarku.html">TERENI ZA KOSARKU</a>
-                    </div>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="novo_logovanje.aspx">POSTANI KORISNIK</a>
-                </li>
-            </ul>
-        </div>
-
-    </nav>-->
         </div>
     </div>
 
@@ -147,6 +183,8 @@
     <br>
     <br>
 
+   
+
     <div class="container-fluid text-center">
         <h2>USLUGE</h2>
         <h4>Sta mi nudimo</h4>
@@ -155,17 +193,17 @@
             <div class="col-sm-4">
                 <span class="glyphicon glyphicon-off"></span>
                 <h4>SNAGU</h4>
-                <p>Lorem ipsum dolor sit amet..</p>
+                <!--<p>Lorem ipsum dolor sit amet..</p>-->
             </div>
             <div class="col-sm-4">
                 <span class="glyphicon glyphicon-heart"></span>
                 <h4>POSVECENOST</h4>
-                <p>Lorem ipsum dolor sit amet..</p>
+                <!--<p>Lorem ipsum dolor sit amet..</p>-->
             </div>
             <div class="col-sm-4">
                 <span class="glyphicon glyphicon-lock"></span>
                 <h4>ZAVRSEN POSAO</h4>
-                <p>Lorem ipsum dolor sit amet..</p>
+                <!--<p>Lorem ipsum dolor sit amet..</p>-->
             </div>
         </div>
         <br><br>
@@ -189,8 +227,8 @@
     </div>
 
 
-    <footer class="container-fluid text-center fixed-bottom bg-dark text-light">
-        <p>  www.steroid@gmail.com</p>
+    <footer class="container-fluid text-center bg-dark text-light futer">
+        <p style="margin-bottom:0px">  &copy Obren Misirlíć</p>
     </footer>
 
 </body>

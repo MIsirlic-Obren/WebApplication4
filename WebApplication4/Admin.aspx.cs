@@ -12,7 +12,7 @@ namespace WebApplication4
 	public partial class Admin : System.Web.UI.Page
 	{
 
-        Dictionary<string, string> recnik = new Dictionary<string, string>();
+        
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
@@ -34,11 +34,14 @@ namespace WebApplication4
                     DropDownList1.DataSource = da;
                     DropDownList1.DataTextField = "Naziv";
                     DropDownList1.DataValueField = "ID";
-                    DropDownList1.DataBind();
+                    DropDownList1.DataBind(); //pamtis kako jeste
 
                     DropDownList1.Items.Insert(0, new ListItem("", ""));
 
-                    for(int i = 0; i < da.Rows.Count; i++)
+                    //napuniti recnik kao dropdown iznad
+                    Dictionary<string, string> recnik = new Dictionary<string, string>();
+
+                    for (int i = 0; i < da.Rows.Count; i++)
                     {
 
                         recnik.Add(da.Rows[i]["ID"].ToString(), da.Rows[i]["Cena"].ToString());
@@ -46,7 +49,7 @@ namespace WebApplication4
 
                     }
 
-                    Session["recnik"] = recnik;
+                    Session["recnik"] = recnik; //session pamti objekte, opsti oblik
 
                 }
 
@@ -68,6 +71,10 @@ namespace WebApplication4
 
                 
                 Dictionary<string, string> novi = (Dictionary<string, string>)Session["recnik"];
+
+                //  object proba = Session["recnik"];
+                //string proba1 = Session["recnik"].ToString();
+                //novi[]
 
                 string cena1 = novi[DropDownList1.SelectedValue];
                 cena.InnerHtml = "Trenutna cena je " + cena1;

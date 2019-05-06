@@ -69,11 +69,16 @@
 
 
 <body>
-        <div class="container-fluid navbar-dark bg-primary text-light divHeader">
-        <div class="row">
+        <div class="container-fluid   bg-primary text-light">
+        <div class="row justify-content-between ">
             <div class="col-md-6-h1 col-sm-8 col-12">
                 <h1> <img src="YE6LLW3.jpg" class="img-fluid" alt="" width='200'/> CENTAR SPORTA-ZAKAZIVANJE</h1>
             </div>
+           <div class="col-md-2">
+            <span class="navbar-text ">
+                <a href="Logout.aspx" class="text-light btn btn-primary"><span class="glyphicon glyphicon-user"> </span> Log out</a>
+            </span>
+        </div>
         </div>
     </div>
 
@@ -88,7 +93,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
-                                                <li class="nav-item active">
+                         <li class="nav-item active">
                             <a class="nav-link text-dark" href="Home.html">HOME</a>
                         </li>
                        <%-- <li class="nav-item active">
@@ -158,6 +163,7 @@
     
 <%--    <div class="Prostor"></div>--%>
      <div id="termini" runat="server">
+         
 
 
       </div>
@@ -173,8 +179,8 @@
                   $.ajax({
                       url: "Zakazivanje.aspx/ObrisiTermin",
                       method: "POST",
-                      contentType: "application/json; charset=utf-8",
-                      data: JSON.stringify({ id: id }),
+                      contentType: "application/json; charset=utf-8",  //OBAVEZAN DEO AJAXA KADA SE RADI SA WEB METODOM DA METODA ZNA KOJU VRDTU PODATKA PRIMA
+                      data: JSON.stringify({ id: id }), // F-JA KOJA PRETVARA JAVASCRIPT OBJEKAT U TEKST {PARAMETAR, VREDNOST} RAZLIKUJE DA LI MU PROSLEDJUJEMO STRING ILI BROJ
                       success: function (result) {
 
                           alert("radi");

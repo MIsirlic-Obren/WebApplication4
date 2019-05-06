@@ -29,7 +29,7 @@
 
 </head>
 <body>
-    <div class="container-fluid bg-dark text-light divHeader">
+    <div class="container-fluid" style="background-color: #e3f2fd">
         <div class="row">
             <div class="col-md-6-h1 col-sm-8 col-12">
                 <h1> <img src="YE6LLW3.jpg" class="img-fluid" alt="" width='200'> CENTAR SPORTA</h1>
@@ -37,52 +37,15 @@
         </div>
     </div>
 
-    <div class="row bg-dark">
-        <div class="col-md-12">
-            <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #e3f2fd">
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-<%--                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                NASA PONUDA
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item" href="Baloni_za_fudbal.html">BALONI ZA FUDBAL</a>
-                                <a class="dropdown-item" href="Teretane.html">TERETANE</a>
-                                <a class="dropdown-item" href="Bazen.html">BAZENI</a>
-                                <a class="dropdown-item" href="TereniZaKosarku.html">TERENI ZA KOSARKU</a>
-                            </div>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="O nama.html">O NAMA</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="Kontakt i  lokacija.html">KONTAKT I LOKACIJA</a>
-                        </li>
-                    </ul>
-                </div>--%>
-
-            </nav>
-        </div>
-    </div>
- 
-
     <div class="container-fluid bg-grey text-center ">
         <div class="row">
 
-            <div class="col-md-12  navbar navbar-expand-lg navbar navbar-light " style="background-color: #e3f2fd  ">
+            <div class="col-md-12  navbar navbar-expand-lg navbar navbar-light " style="background-color: #e3f2fd" >
                 <div class= "col-md-10 text-left"> <h1>WELCOME TO ADMIN PAGE</h1> </div>
 
              <div class="col-md-2">
                <span class="navbar-text">
-                 <a href="Logout.aspx" class="text-light btn btn-primary"><span class="glyphicon glyphicon-user"> </span> Log out</a
+                 <a href="Logout.aspx" class="text-light btn btn-primary"><span class="glyphicon glyphicon-user"> </span> Log out</a>
                 </span>
             </div>
 
@@ -97,6 +60,9 @@
         
 
     <form id="form1" runat="server">
+
+
+        <asp:Label ID="Label2" runat="server" Text="Label">IZABERI KATEGORIJU</asp:Label>
 
 
         <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
