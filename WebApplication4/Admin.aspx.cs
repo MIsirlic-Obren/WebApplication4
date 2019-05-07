@@ -12,13 +12,27 @@ namespace WebApplication4
 	public partial class Admin : System.Web.UI.Page
 	{
 
-        
 
-		protected void Page_Load(object sender, EventArgs e)
-		{
-            if (Session["tip_korisnika"].ToString() != "1")
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+            Response.Cache.SetNoStore();
+            if (Session["tip_korisnika"].ToString() != "1" )
             {
-                Response.Redirect("Home.html");
+                if(Session["tip_korisnika"].ToString() == "")
+                {
+
+                    Response.Redirect("index.html");
+
+                }
+                else
+                {
+
+                    Response.Redirect("Home.html");
+
+                }
+               
             }
 
             else

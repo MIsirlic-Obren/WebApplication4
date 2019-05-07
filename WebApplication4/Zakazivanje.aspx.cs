@@ -20,8 +20,14 @@ namespace WebApplication4
             if (Session["ID"].ToString() == "")
             {
 
-                Response.Redirect("novo_logovanje.aspx?value=zakazivanje");
+                Response.Redirect("novo_logovanje.aspx?value=zakazivanje"); // da zapamti da nas vodi direktno na zakazivanje
 
+
+            }
+            else if(Session["tip_korisnika"].ToString() == "1")
+            {
+
+                Response.Redirect("Admin.aspx");
 
             }
 
@@ -32,7 +38,7 @@ namespace WebApplication4
                 if (!IsPostBack) // ako nije prvo(pocetno) loadovanje stranice onda izvrsavaj kod koji se nalazi u ovom if bloku!!!!!!!!
                 {
 
-                    C1 = DropDownList1;
+                    //C1 = DropDownList1;
 
                     DateTime novi = new DateTime();
                     novi = DateTime.Now;
@@ -44,11 +50,11 @@ namespace WebApplication4
                     for (int i = 0; i < 15; i++)
                     {
 
-                        string datumText = novi.Day.ToString().PadLeft(2, '0') + "." + novi.Month.ToString().PadLeft(2, '0') + "." + novi.Year.ToString().PadLeft(2, '0') + ".";
-                        string datumValue = novi.Year.ToString().PadLeft(2, '0') + novi.Month.ToString().PadLeft(2, '0') + novi.Day.ToString().PadLeft(2, '0');
+                        string datumText = novi.Day.ToString().PadLeft(2, '0') + "." + novi.Month.ToString().PadLeft(2, '0') + "." + novi.Year.ToString().PadLeft(2, '0') + ".";//kako je datum upisan u dropdownu
+                        string datumValue = novi.Year.ToString().PadLeft(2, '0') + novi.Month.ToString().PadLeft(2, '0') + novi.Day.ToString().PadLeft(2, '0');//kako se upisuje u bazu
 
                         datumi.Add(datumText, datumValue);
-                        novi = DateTime.Now.AddDays(i + 1);
+                        novi = DateTime.Now.AddDays(i + 1);//krece od danasnjeg datuma i  i formira 15 dana od danasnjeg dana
 
                     }
 
@@ -57,7 +63,7 @@ namespace WebApplication4
                     DropDownList1.DataValueField = "VALUE";
                     DropDownList1.DataBind();
 
-                    DropDownList1.Items.Insert(0, new ListItem("", "")); //rucno insertovanje itema u dropdown
+                    DropDownList1.Items.Insert(0, new ListItem("", "")); //da mi prva vrednost bude prazan string rucno insertovanje itema u dropdown
 
 
                     string CS = ("Data Source=LAPTOP-6RQ2FFD7\\SQLEXPRESS;Initial Catalog=FITNESS;Integrated Security=True;MultipleActiveResultSets=True");
@@ -101,7 +107,7 @@ namespace WebApplication4
                 conn.Close();
                 moj.InnerHtml = Session["USERNAME"].ToString() + " je uspesno zakazao termin";
 
-                Metoda();
+                Metoda();// osvezava slobodne termine i izbacuje prethodno unet termin iz dropdown liste slobodnih termina
                 osveziTabelu();
 
             }
@@ -143,13 +149,13 @@ namespace WebApplication4
                 adapt.Fill(termini);  //tabela zauzetih termina!!!
                 //   
 
-                if (termini.Rows.Count == 0)// svi termini za izabrani datum su slobodni!!!
+                if (termini.Rows.Count == 0)// generisem sve termini za izabrani datum ( svi su slobodni!!!)
                 {
                     TimeSpan vreme = new TimeSpan(9, 0, 0);
                     Dictionary<string, string> satnica = new Dictionary<string, string>();
                     satnica.Clear();
 
-                    for (int j = 0; j < 13; j++)
+                    for (int j = 0; j < 14; j++)
                     {
 
                         string val = vreme.Hours + ":" + vreme.Minutes;
@@ -169,7 +175,8 @@ namespace WebApplication4
 
 
                 }
-
+                // nasli smo neke zauzete termine  i onda te termine izbacujemo iz liste slobodnih termina
+                //generisem sve termine i svaki uporedjujem sa zauzetim terminima iz baze(ako postoji poklapanje ne ubacuje se u dropdown)
                 else
                 {
 
@@ -180,7 +187,7 @@ namespace WebApplication4
 
                     //  TimeSpan prov = (TimeSpan)termini.Rows[0][1];
 
-                    for (int j = 0; j < 13; j++)
+                    for (int j = 0; j < 14; j++)
                     {
 
                         for (int k = 0; k < termini.Rows.Count; k++)
@@ -189,7 +196,7 @@ namespace WebApplication4
                             if ((TimeSpan)termini.Rows[k][1] == vreme)
                             {
 
-                                provera = false; // kada nadje vrednost u tabeli zauzetih termins
+                                provera = false; // kada nadje vrednost u tabeli zauzetih termina
                                 break;
 
 

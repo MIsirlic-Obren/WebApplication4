@@ -60,7 +60,7 @@ namespace WebApplication4
                 for (int i = 0; i < tabela.Rows.Count; i++)
                 {
 
-                    if (tabela.Rows[i][1].ToString() == email)
+                    if (tabela.Rows[i][5].ToString() == email)
                     {
                         provera = false;
                         // Response.Redirect('index.html?odgovor:negativan')
@@ -76,12 +76,25 @@ namespace WebApplication4
 
                 if (provera)
                 {
+                    Response.Write("<div class='poruka'>postoji korisnik sa tim username-om</div>");
+                    //Response.Write("postoji korisnik sa tim username-om");
+                    Response.Write("<div id='nazad' class='izgled'>klikni</div>");
+                    //Response.Redirect("Registracija.html?poruka=postoji korisnik sa tim username-om");
 
-                    Response.Write("postoji korisnik sa tim username-om");
+
                    // Response.Write("<a href=" + "'index.html'" + ">klikni</a>");
                     ////Response.Redirect("index.html");
                 }
 
+                else
+                {
+                    Response.Write("<div class='poruka'>email je vec registrovan</div>");
+                    //Response.Write("postoji korisnik sa tim username-om");
+                    Response.Write("<div id='nazad' class='izgled'>klikni</div>");
+
+
+
+                }
 
             }
 

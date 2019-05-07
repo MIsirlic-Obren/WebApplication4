@@ -15,6 +15,13 @@
     <style>
         .btn btn-default {
         }
+
+        #poruka{
+
+            margin-top:10px;
+            color:red;
+
+        }
     </style>
 </head>
 <body>
@@ -70,11 +77,13 @@
                             </div>
                         </form>
 
+                            <div id="poruka" runat="server"></div>
+
                     </div>
 
             </div>
 
-
+        
 
 
         </div>

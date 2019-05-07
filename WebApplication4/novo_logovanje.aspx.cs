@@ -13,11 +13,19 @@ namespace WebApplication4
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["tip_korisnika"].ToString() != "")
+
+            Response.Cache.SetNoStore();
+            if (Session["tip_korisnika"].ToString() == "2")
             {
 
-               
+                Response.Redirect("Home.html");
 
+
+            }
+            else if (Session["tip_korisnika"].ToString() == "1")
+            {
+
+                Response.Redirect("Admin.aspx");
 
             }
         }
@@ -42,7 +50,9 @@ namespace WebApplication4
 
             if (tabela.Rows.Count == 0)
             {
-                Response.Write("pogresan username ili email");
+                //Response.Write("pogresan username ili email");
+                poruka.InnerHtml = "ne postoji korisnik";
+            
 
             }
 
@@ -71,6 +81,7 @@ namespace WebApplication4
                         {
                           
                             Response.Redirect("Admin.aspx"); // VRACANJE NA POCETNU STRANU!!!!!!
+                           
 
                         }
 
@@ -129,7 +140,8 @@ namespace WebApplication4
                 else
                 {
 
-                    Response.Write("pogresan password");
+                    //Response.Write("pogresan password");
+                    poruka.InnerHtml = "pogresan password";
 
                 }
 

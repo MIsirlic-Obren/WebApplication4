@@ -74,35 +74,37 @@
                         <div class="form-group">
 
                             <label for="usr">Ime</label>
-                            <input type="text" class="form-control" id="usr" name="ime">
+                            <input type="text" class="form-control" id="ime" name="ime">
 
                         </div>
                         <div class="form-group">
                             <label for="pwd">Prezime</label>
-                            <input type="text" class="form-control" id="pwd" name="prezime">
+                            <input type="text" class="form-control" id="prezime" name="prezime">
                         </div>
 
                         <div class="form-group">
                             <label for="pwd">e-mail</label>
-                            <input type="text" class="form-control" id="pwd" name="email">
+                            <input type="text" class="form-control" id="mejl" name="email">
                         </div>
                         <div class="form-group">
                             <label for="pwd">Username</label>
-                            <input type="text" class="form-control" id="pwd" name="user">
+                            <input type="text" class="form-control" id="korisnik" name="user">
                         </div>
 
                         <div class="form-group">
                             <label for="pwd">Password</label>
-                            <input type="password" class="form-control" id="pwd" name="lozinka">
+                            <input type="password" class="form-control" id="lozinka" name="lozinka">
                         </div>
 
                         <!--<div class="col-sm-offset-2 col-sm-10">
             <button type="button" class="btn btn-primary">Submit</button>
         </div>-->
+                        <div id="rezultat"></div>
+
                     </div>
                     <div class="clearfix">
                         <!--<button type="button" class="cancelbtn">Cancel</button>-->
-                        <input type="submit" value="submit" class="btn btn-primary" />
+                        <input type="submit" onclick="return provera()" class="btn btn-primary" id="dugmence" />
                     </div>
 
                 </form>
@@ -124,6 +126,107 @@
 
         </div>
     </div>
+
+    <script>
+
+        //document.getElementById("dugmence").addEventListener("click", function () {
+
+        //})
+
+        function provera() {
+
+            //var ime_bool;
+            //var prezime_bool;
+            //var username_bool;
+            //var lozinka_bool;
+            //var emejl_bool;
+
+            document.getElementById("rezultat").innerHTML = "";
+
+            var username = document.getElementById("korisnik").value;
+            if (username == "" || username.length < 3) {
+
+                //document.getElementById("korisnik").style.backgroundColor = "red";
+                document.getElementById("rezultat").innerHTML = "Polje Username ne sme biti prazno ili manje od 3 karaktera"
+                return false;
+
+            }
+            else {
+
+                var ime = document.getElementById("ime").value;
+                if (ime == "" || ime.length < 3) {
+
+                    //document.getElementById("usr").style.backgroundColor = "red";
+                    document.getElementById("rezultat").innerHTML = "Polje Ime ne sme biti prazno ili manje od 3 karaktera";
+                    return false;
+
+
+                }
+                else {
+
+                    var prezime = document.getElementById("prezime").value;
+                    if (prezime == "" || prezime.length < 5) {
+
+                        //document.getElementById("usr").style.backgroundColor = "red";
+                        document.getElementById("rezultat").innerHTML = "Polje Prezime ne sme biti prazno ili manje od 5 karaktera"
+                        return false;
+
+                    }
+                    else {
+
+
+                    var lozinka = document.getElementById("lozinka").value;
+                        if (lozinka == "" || lozinka.length < 7) {
+
+                            //document.getElementById("usr").style.backgroundColor = "red";
+                            document.getElementById("rezultat").innerHTML = "Polje Password ne sme biti prazno ili manje od 7 karaktera"
+                            return false;
+
+                        }
+                        else {
+                            var mejl = document.getElementById("mejl").value;
+                            if (mejl == "" || mejl.length < 11) {
+
+                                //document.getElementById("usr").style.backgroundColor = "red";
+                                document.getElementById("rezultat").innerHTML = "Polje e-mail ne sme biti prazno ili manje od 11 karaktera"
+                                return false;
+
+                            }
+                            else {
+
+                                return true;
+
+
+
+                            }
+
+
+
+
+                        }
+
+                    }
+
+
+
+
+                }
+                
+
+            }
+
+           
+
+      
+
+
+        }
+
+
+
+
+    </script>
+
 </body>
 </html>
 
