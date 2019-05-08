@@ -72,7 +72,7 @@
 
                             <div class="col-sm-offset-2 col-sm-10">
                                 <%--<input type="submit" value="submit" class="btn btn-primary" />--%>
-                                <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+                                <asp:Button ID="Button1" runat="server" Text="Uloguj se" OnClick="Button1_Click" />
 
                             </div>
                         </form>

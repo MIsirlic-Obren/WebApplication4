@@ -122,9 +122,9 @@
 
 
 
-        <footer class="container-fluid text-center fixed-bottom bg-dark text-light">
-            <p>  www.steroid@gmail.comm</p>
-        </footer>
+        <footer class="container-fluid text-center bg-dark text-light futer">
+        <p style="margin-bottom:0px">  &copy Obren Misirlíć</p>
+    </footer>
 
     <script>    
         document.getElementById("dugme").addEventListener("click", function () {
@@ -149,6 +149,7 @@
         })
 
     </script>
+
 
 </body>
 </html>

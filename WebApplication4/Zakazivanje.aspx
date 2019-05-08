@@ -208,6 +208,9 @@
 
         </script>
 
-
+    
+    <footer class="container-fluid text-center fixed-bottom bg-dark text-light">
+        <p style="margin-bottom:0px">    &copy Obren Misirlíć</p>
+    </footer>
 </body>
 </html>

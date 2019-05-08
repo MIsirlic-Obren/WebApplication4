@@ -69,6 +69,9 @@
   <ItemGroup>
     <Content Include="Admin.aspx" />
     <Content Include="Baloni_za_fudbal.html" />
+    <Content Include="slike\488ebbaac04d66f72fc518157b01f32c.jpg" />
+    <Content Include="slike\Baloni_za_fudbal_trudbenik2.jpg" />
+    <Content Include="slike\Balon_za_fudbal_Top_Spin-1-e1554970304734.jpg" />
     <Content Include="Bazen.html" />
     <Content Include="Global.asax" />
     <Content Include="Home.html" />
@@ -78,6 +81,11 @@
     <Content Include="O nama.html" />
     <Content Include="Registracija.aspx" />
     <Content Include="Registracija.html" />
+    <Content Include="slike\bazen-tasmajdan-tas-3_519a133ac5ab3.jpg" />
+    <Content Include="slike\DSC_10481.jpg" />
+    <Content Include="slike\Dynamic 1.jpg" />
+    <Content Include="slike\plivalista_3.jpg" />
+    <Content Include="slike\site_25707351.jpg" />
     <Content Include="TereniZaKosarku.html" />
     <Content Include="Teretane.html" />
     <Content Include="Web.config" />
