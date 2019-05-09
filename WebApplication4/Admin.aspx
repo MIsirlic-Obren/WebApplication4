@@ -122,9 +122,9 @@
 
 
 
-        <footer class="container-fluid text-center bg-dark text-light futer">
+<%--        <footer class="container-fluid text-center bg-dark text-light futer">
         <p style="margin-bottom:0px">  &copy Obren Misirlíć</p>
-    </footer>
+    </footer>--%>
 
     <script>    
         document.getElementById("dugme").addEventListener("click", function () {
